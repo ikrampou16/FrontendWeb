@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'HomePage.dart';
 import 'LoginPage.dart';
 import 'DoctorsPage.dart';
-import 'ServicesPage.dart'; // Add this import statement
+import 'ServicesPage.dart';
+import 'DoctorRegistrationScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +20,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
-  final ScrollController _scrollControllerr = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +31,13 @@ class MyHomePage extends StatelessWidget {
             title: 'Custom Title',
             backgroundImage: 'assets/doctor.jpg',
             scrollController: _scrollController,
-            scrollControllerr: _scrollControllerr,
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 40),
           ServicesPage(
             title: 'Services Page',
             color: Colors.blue,
             backgroundImage: 'assets/pd.jpg',
-            scrollControllerr: _scrollControllerr,
           ),
-
           SizedBox(height: 50),
           DoctorsPage(
             title: 'Signup Page',
@@ -53,7 +50,9 @@ class MyHomePage extends StatelessWidget {
             backgroundImage: 'assets/pd.jpg',
             scrollController: _scrollController,
           ),
+          SizedBox(height: 50),
 
+          DoctorRegistrationScreen(), // Include DoctorRegistrationScreen here
         ],
       ),
     );

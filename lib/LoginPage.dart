@@ -204,6 +204,8 @@ class _LoginPageState extends State<LoginPage> {
         final decodedToken = jsonDecode(utf8.decode(base64.decode(base64.normalize(token.split('.')[1]))));
         print('Decoded Token: $decodedToken');
         final doctorId = decodedToken['id'];
+        final firstName = decodedToken['first_name'];
+        final lastName = decodedToken['last_name'];
         print('Decoded Doctor ID: $doctorId');
 
         // Delay the navigation to allow for the decoding process
@@ -211,7 +213,12 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (_) => DoctorDashboard(),
+              builder: (_) => DoctorDashboard(
+                doctorId: doctorId,
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+              ),
             ),
           );
         });

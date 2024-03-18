@@ -25,6 +25,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  file_picker: ^4.0.0
+  image_picker: ^0.8.4+1
   http: ^0.13.3
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
