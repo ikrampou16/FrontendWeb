@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,7 +19,7 @@ class HomePage extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 500,
+          height: 631,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(backgroundImage),
@@ -34,7 +36,7 @@ class HomePage extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 5.0, top: 90.0),
+                  padding: const EdgeInsets.only(left: 5.0, top: 100.0),
                   child: Text(
                     'Your health',
                     style: TextStyle(
@@ -73,60 +75,89 @@ class HomePage extends StatelessWidget {
         ),
         Container(
           color: Colors.black.withOpacity(0.3),
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(10.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align buttons at the right
             children: [
-              TextButton(
-                onPressed: () => _showServices(context),
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Text(
-                  'Services',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.white,
-                  ),
-                ),
+              Image.asset(
+                'assets/mylogo.png',
+                width: 70,
+                height: 80,
               ),
-              SizedBox(width: 20),
-              TextButton(
-                onPressed: () => _showDoctors(),
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Text(
-                  'Doctors',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              SizedBox(width: 20),
-              TextButton(
-                onPressed: () => _scrollToLogin(context),
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.white,
-                  ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end, // Align buttons at the right
+                  children: [
+                    TextButton(
+                      onPressed: () => _showServices(context),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Text(
+                        'Services',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    TextButton(
+                      onPressed: () => _showDoctors(context),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Text(
+                        'Doctors',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    TextButton(
+                      onPressed: () => _scrollToLogin(context),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    TextButton(
+                      onPressed: () => _scrollToLogin(context),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
+
       ],
     );
   }
@@ -145,10 +176,11 @@ class HomePage extends StatelessWidget {
       curve: Curves.easeInOut,
     );
   }
-
-
-
-  void _showDoctors() {
-    // Your implementation for showing the doctors page
+  void _showDoctors(BuildContext context) {
+    scrollController.animateTo(
+      MediaQuery.of(context).size.height,
+      duration: Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    );
   }
 }

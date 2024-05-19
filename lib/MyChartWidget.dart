@@ -76,25 +76,41 @@ class _MyChartWidgetState extends State<MyChartWidget> {
                       (index) => FlSpot(index.toDouble(), yValues[index]),
                 ),
                 isCurved: true,
-                colors: [Colors.blue],
+                color: Colors.blue,
                 dotData: FlDotData(show: false),
                 belowBarData: BarAreaData(show: false),
               ),
             ],
             titlesData: FlTitlesData(
-              leftTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 40,
-                getTitles: (value) {
-                  return value.toInt().toString();
-                },
+              leftTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 40,
+                  getTitlesWidget: (value, meta) {
+                    return Text(value.toInt().toString());
+                  },
+                ),
               ),
-              bottomTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 22,
-                getTitles: (value) {
-                  return xLabels[value.toInt()];
-                },
+              bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 22,
+                  getTitlesWidget: (value, meta) {
+                    final index = value.toInt();
+                    if (index >= 0 && index < xLabels.length) {
+                      return SideTitleWidget(
+                        axisSide: meta.axisSide,
+                        space: 4.0,
+                        child: Text(xLabels[index]),
+                      );
+                    }
+                    return SideTitleWidget(
+                      axisSide: meta.axisSide,
+                      space: 4.0,
+                      child: Text(''),
+                    );
+                  },
+                ),
               ),
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
 import 'LoginPage.dart';
@@ -5,7 +6,16 @@ import 'DoctorsPage.dart';
 import 'ServicesPage.dart';
 import 'DoctorRegistrationScreen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: FirebaseOptions( apiKey: "AIzaSyATwromYmxYKkKMsmnUX1LLMYePe_5yo9M",
+      authDomain: "dkaproject-2586c.firebaseapp.com",
+      projectId: "dkaproject-2586c",
+      storageBucket: "dkaproject-2586c.appspot.com",
+      messagingSenderId: "867370442571",
+      appId: "1:867370442571:web:f151ca0fba2c3bb5cc12ce",
+      measurementId: "G-CFW3QN0P2M"));
   runApp(MyApp());
 }
 
@@ -28,7 +38,7 @@ class MyHomePage extends StatelessWidget {
         controller: _scrollController,
         children: [
           HomePage(
-            title: 'Custom Title',
+            title: 'Home Page',
             backgroundImage: 'assets/doctor.jpg',
             scrollController: _scrollController,
           ),
@@ -40,7 +50,7 @@ class MyHomePage extends StatelessWidget {
           ),
           SizedBox(height: 50),
           DoctorsPage(
-            title: 'Signup Page',
+            title: 'Doctors Page',
             backgroundImage: 'assets/doc.jpeg',
           ),
           SizedBox(height: 50),
@@ -48,11 +58,9 @@ class MyHomePage extends StatelessWidget {
             title: 'Login Page',
             color: Colors.green,
             backgroundImage: 'assets/pd.jpg',
-            scrollController: _scrollController,
           ),
           SizedBox(height: 50),
-
-          DoctorRegistrationScreen(), // Include DoctorRegistrationScreen here
+          DoctorRegistrationScreen(),
         ],
       ),
     );

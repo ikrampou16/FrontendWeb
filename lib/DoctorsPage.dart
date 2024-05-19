@@ -1,100 +1,103 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class DoctorsPage extends StatelessWidget {
   final String title;
   final String backgroundImage;
+  final ScrollController? scrollController2;
 
-  const DoctorsPage({Key? key, required this.title, required this.backgroundImage})
-      : super(key: key);
-
+  DoctorsPage({
+    Key? key,
+    required this.title,
+    required this.backgroundImage,
+    this.scrollController2,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 500,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(backgroundImage),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.6),
-                BlendMode.screen,
+    return Center(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: 593,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(backgroundImage),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  Colors.white.withOpacity(0.6),
+                  BlendMode.screen,
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          top: 30,
-          left: 400,
-          child: Text(
-            'Meet Our Family',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 130,
-          left: 350,
-          child: Text(
-            textAlign: TextAlign.center,
-            'Well qualified doctors are ready to serve you',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 25,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 200.0),
-          child: Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ColoredContainer(
-                color: Colors.white,
-                image: AssetImage('assets/medecin.jpg'), // Add your image path
-                text: 'Dr. Sarah Louis\n\nCardiologist',
-                textStyle: TextStyle(
-
-                  fontFamily: 'Poppins',
+              Text(
+                'Meet Our Family',
+                style: TextStyle(
                   color: Colors.black,
+                  fontSize: 50,
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
                 ),
               ),
-              SizedBox(width: 50),
-              ColoredContainer(
-                color: Colors.white,
-                image: AssetImage('assets/medecin.jpg'), // Add your image path
-                text: 'Dr. Emma Wilson\n\nNeurologist',
-                textStyle: TextStyle(
-                  fontFamily: 'Poppins',
+              SizedBox(height: 20),
+              Text(
+                'Well qualified doctors are ready to serve you',
+                textAlign: TextAlign.center,
+                style: TextStyle(
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 25,
                 ),
               ),
-              SizedBox(width: 50),
-              ColoredContainer(
-                color: Colors.white,
-                image: AssetImage('assets/medecin.jpg'), // Add your image path
-                text: 'Dr. Shane Draw\n\nGynologist',
-                textStyle: TextStyle(
-                  fontFamily: 'Poppins',
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+              SizedBox(height: 20),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ColoredContainer(
+                      color: Colors.white,
+                      image: AssetImage('assets/medecin.jpg'), // Add your image path
+                      text: 'Dr. Sarah Louis\n\nCardiologist',
+                      textStyle: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(width: 50),
+                    ColoredContainer(
+                      color: Colors.white,
+                      image: AssetImage('assets/medecin.jpg'), // Add your image path
+                      text: 'Dr. Emma Wilson\n\nNeurologist',
+                      textStyle: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(width: 50),
+                    ColoredContainer(
+                      color: Colors.white,
+                      image: AssetImage('assets/medecin.jpg'), // Add your image path
+                      text: 'Dr. Shane Draw\n\nGynologist',
+                      textStyle: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -121,6 +124,7 @@ class ColoredContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(10),
@@ -144,11 +148,12 @@ class ColoredContainer extends StatelessWidget {
               image: image,
               width: 100,
               height: 100,
-
             ),
           ),
           Positioned(
             bottom: 50,
+            left: 10,
+            right: 10,
             child: Text(
               text,
               style: textStyle,
